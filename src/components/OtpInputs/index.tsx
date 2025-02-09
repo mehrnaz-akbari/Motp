@@ -53,11 +53,11 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
   }
 
   useEffect(() => {
-    console.log("in herer");
+    alert("in herer");
 
     if ("OTPCredential" in window) {
-      console.log("in OTPCredential");
-      console.log(navigator);
+      alert("in OTPCredential");
+      alert(navigator);
       const ac = new AbortController();
 
       navigator?.credentials
@@ -66,17 +66,16 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
         //@ts-ignore
 
         .then((otp) => {
-          console.log(otp);
-          setTheCode(otp);
+          alert(JSON.stringify(otp));
+          setTheCode(JSON.stringify(otp));
         })
         .catch((err) => {
-          console.log("err", err);
           alert(err);
         })
         .finally(() => {
-          console.log("finnaly");
+          alert("finnaly");
         });
-      console.log(ac.signal);
+      alert(ac.signal);
     }
   }, []);
 
