@@ -1,7 +1,5 @@
 import { read } from "@/helpers/storage";
 
-export const serverList = process.env?.NEXT_PUBLIC_BASE_URL?.split(",");
+export const serverList = "https://uat.sdb247.com/card-mobile-adapter/api/v1/";
 
 export const baseUrl = read("baseUrl") || serverList?.[0];
-
-export const otpUrl = process.env?.NEXT_PUBLIC_OTP_URL;
