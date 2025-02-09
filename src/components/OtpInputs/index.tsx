@@ -70,7 +70,7 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
     codesRef.current[item] = el;
   };
   const staticClassName =
-    "h-12 w-full border-2 border-solid rounded-[10px] bg-input-placeholder ";
+    "h-12 w-[14%] border-2 border-solid rounded-[10px] bg-input-placeholder ";
   return (
     <>
       <div className="flex justify-evenly flex-row-reverse w-full">
