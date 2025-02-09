@@ -16,6 +16,37 @@ type OTPOptions = {
   transport: string[];
 };
 
+const useOtpAutoFillHook = (setTheCode: (code: string) => void) => {
+  useEffect(() => {
+    if (!navigator?.credentials) {
+      console.warn("OTP autofill API is not supported.");
+      return;
+    }
+
+    const ac = new AbortController();
+
+    // @ts-ignore
+    navigator.credentials
+      // @ts-ignore
+      .get({ otp: { transport: ["sms"] }, signal: ac.signal })
+      .then((otp: any) => {
+        if (otp && otp.code) {
+          setTheCode(otp.code);
+        }
+      })
+      .catch((err) => {
+        console.error("OTP autofill error:", err);
+      })
+      .finally(() => {
+        ac.abort();
+      });
+
+    return () => {
+      ac.abort();
+    };
+  }, [setTheCode]);
+};
+
 const OtpInputs: FC<Props> = ({ onChange, error }) => {
   const inputArray = Array.from(Array(6), (x, i) => i);
   const [otpCode, setOtpCode] = useState<string[]>([]);
@@ -51,33 +82,35 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
       }
     }
   }
+  const [otp, setOtp] = useState("");
 
-  useEffect(() => {
-    alert("in effect");
+  useOtpAutoFillHook(setOtp);
+  // useEffect(() => {
+  //   alert("in effect");
 
-    if ("OTPCredential" in window) {
-      alert("in OTPCredential");
-      alert(navigator);
-      const ac = new AbortController();
+  //   if ("OTPCredential" in window) {
+  //     alert("in OTPCredential");
+  //     alert(navigator);
+  //     const ac = new AbortController();
 
-      navigator?.credentials
-        //@ts-ignore
-        .get({ otp: { transport: ["sms"] }, signal: ac.signal })
-        //@ts-ignore
+  //     navigator?.credentials
+  //       //@ts-ignore
+  //       .get({ otp: { transport: ["sms"] }, signal: ac.signal })
+  //       //@ts-ignore
 
-        .then((otp) => {
-          alert(JSON.stringify(otp));
-          setTheCode(JSON.stringify(otp));
-        })
-        .catch((err) => {
-          alert(String(err));
-        })
-        .finally(() => {
-          alert("finnaly");
-          ac.abort();
-        });
-    }
-  }, []);
+  //       .then((otp) => {
+  //         alert(JSON.stringify(otp));
+  //         setTheCode(JSON.stringify(otp));
+  //       })
+  //       .catch((err) => {
+  //         alert(String(err));
+  //       })
+  //       .finally(() => {
+  //         alert("finnaly");
+  //         ac.abort();
+  //       });
+  //   }
+  // }, []);
 
   const handleClickInputs = (index: number): void => {
     if (otpCode[index]) {
@@ -133,6 +166,7 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
         </div>
       </div>
       theCode:{theCode}
+      otp:{JSON.stringify(otp)}
       {error && (
         <span className="text-error text-sm loading-6 h-6 mt-2 mr-3 block">
           {error}
