@@ -1,0 +1,27 @@
+{
+  "noName": {
+    "registerBluCard": "ثبت بلوکارت",
+    "registerBluCardText": "برای استفاده از بلوکارت، ابتدا باید آن را ثبت کنید. آماده‌اید شروع کنیم؟",
+    "start": "شروع",
+    "enterPhoneNumber": "شماره موبایل خود را وارد کنید",
+    "phoneNUmberPlaceholder": "مانند: ۶۷۸۹ ۳۴۵ ۰۹۱۲",
+    "phoneNumberIsRequired": "شماره موبایل لازم است",
+    "phoneNumberIsInvalid": "شماره موبایل نادرست است",
+    "confirCodeWillBeSending": "در ادامه کد تایید برای شما ارسال می‌شود",
+    "confirmCodeText": "کد تایید ارسال شده به {phone} را وارد کنید",
+    "confirmCodeIsRequired": "کد تایید لازم است",
+    "confirmCodeIsWronge": "کد تایید نادرست است",
+    "expiredCode": "کد تایید منقصی شده است",
+    "tillSendAgain": " تا ارسال دوباره کد",
+    "sendAgain": "ارسال دوباره کد تایید",
+    "enterID": "کد ملی خود را وارد کنید",
+    "idPlaceholder": "کد ملی ۱۰ رقمی",
+    "idRequired": "کد ملی لازم است",
+    "idIsInvalid": "کد ملی نادرست است",
+    "idAndPhoneNotMatch": "کد ملی و شماره موبایل به‌نام به یک نفر نیستند",
+    "bluCardHasRegistered": "بلوکارت شما ثبت شد",
+    "enterBluForActivate": "برای فعال‌سازی بلوکارت و انتخاب رمز اول، وارد بلو شوید",
+    "openBluAccount": "برای ادامه فعال‌سازی و انتخاب رمز اول، وارد اپلیکیشن بلو شوید و ثبت‌نام کنید",
+    "enterBlu": "ورود به بلو"
+  }
+}

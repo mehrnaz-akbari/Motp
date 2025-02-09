@@ -1,0 +1,13 @@
+{
+  "common": {
+    "cancel": "cancel",
+    "bluLine": "Blu Line",
+    "bluLineText": "Always on time everywhere",
+    "frequentlyAskedQuestions": "Frequently Asked Questions",
+    "conversation": "Conversation",
+    "call": "Call",
+    "new": "new!",
+    "notFoundPage": "this page does not exist",
+    "returnToHomePage": "return to homepage"
+  }
+}

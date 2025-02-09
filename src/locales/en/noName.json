@@ -1,0 +1,27 @@
+{
+  "noName": {
+    "registerBluCard": "Blu Card Registration",
+    "registerBluCardText": "To use Blu Card, you must first register it. Ready to get started?",
+    "start": "start",
+    "enterPhoneNumber": "Enter your mobile number.",
+    "phoneNUmberPlaceholder": "Like: 0912 345 6789",
+    "phoneNumberIsRequired": "Mobile number is required.",
+    "phoneNumberIsInvalid": "The mobile number is incorrect.",
+    "confirCodeWillBeSending": "A confirmation code will then be sent to you.",
+    "confirmCodeText": "Enter the verification code sent to {phone}",
+    "confirmCodeIsRequired": "Verification code required",
+    "confirmCodeIsWronge": "The verification code is incorrect",
+    "expiredCode": "The verification code has expired.",
+    "tillSendAgain": "Until resend",
+    "sendAgain": "Resend verification code",
+    "enterID": "Enter your national code.",
+    "idPlaceholder": "10-digit national code",
+    "idRequired": "National code is required.",
+    "idIsInvalid": "The national code is incorrect.",
+    "idAndPhoneNotMatch": "The national code and phone number do not belong to the same person.",
+    "registerNewBluCard": "Your Blu Card has been registered.",
+    "enterBluForActivate": "To activate your Blu Card and choose your first password, log in to Blu.",
+    "openBluAccount": "To continue activation and choose your first password, log in to the Blu app and register.",
+    "enterBlu": "Login to Blu"
+  }
+}

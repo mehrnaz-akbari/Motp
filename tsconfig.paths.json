@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@lib/*": ["./src/lib/*"],
+      "@core/*": ["./src/core/*"],
+      "@app/*": ["./src/app/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@storage": ["./src/storage/index.ts"],
+      "@utils": ["./src/utils/index.ts"],
+    }
+  }
+}

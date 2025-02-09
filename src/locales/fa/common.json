@@ -1,0 +1,13 @@
+{
+  "common": {
+    "cancel": "انصراف",
+    "bluLine": "بلولاین",
+    "bluLineText": "همیشه به وقت همه جا",
+    "frequentlyAskedQuestions": "سوالات متداول",
+    "conversation": "گفتگو",
+    "call": "تماس",
+    "new": "جدید!",
+    "notFoundPage": "صفحه مورد نظر یافت نشد.",
+    "returnToHomePage": "بازگشت به صفحه اصلی"
+  }
+}

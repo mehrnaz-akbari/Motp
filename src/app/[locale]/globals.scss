@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --blu: #4e91e6;
+  --gray: #718e9c;
+  --disabled: #bfccd3;
+  --input-placeholder: #f2f5f6;
+  --blu-text: #253035;
+  --red: #ff0d3b;
+}
+html,
+div,
+span,
+button,
+input {
+  font-family: "geistIranYekan";
+}
+body {
+  margin: 0;
+  direction: rtl;
+  z-index: 1;
+}
+.main-container {
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.back_drop {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 90;
+}
+input {
+  color: #253035;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  -moz-appearance: textfield;
+}
