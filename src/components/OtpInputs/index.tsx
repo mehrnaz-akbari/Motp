@@ -52,55 +52,33 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
     }
   }
 
-  // useEffect(() => {
-  //   alert("in herer");
+  useEffect(() => {
+    alert("in effect");
 
-  //   if ("OTPCredential" in window) {
-  //     alert("in OTPCredential");
-  //     alert(navigator);
-  //     const ac = new AbortController();
+    if ("OTPCredential" in window) {
+      alert("in OTPCredential");
+      alert(navigator);
+      const ac = new AbortController();
 
-  //     navigator?.credentials
-  //       //@ts-ignore
-  //       .get({ otp: { transport: ["sms"] }, signal: ac.signal })
-  //       //@ts-ignore
+      navigator?.credentials
+        //@ts-ignore
+        .get({ otp: { transport: ["sms"] }, signal: ac.signal })
+        //@ts-ignore
 
-  //       .then((otp) => {
-  //         alert(JSON.stringify(otp));
-  //         setTheCode(JSON.stringify(otp));
-  //       })
-  //       .catch((err) => {
-  //         alert(err);
-  //       })
-  //       .finally(() => {
-  //         alert("finnaly");
-  //       });
-  //     alert(ac.signal);
-  //   }
-  // }, []);
-  if ("OTPCredential" in window) {
-    alert("in OTPCredential");
-    alert(navigator);
-    const ac = new AbortController();
+        .then((otp) => {
+          alert(JSON.stringify(otp));
+          setTheCode(JSON.stringify(otp));
+        })
+        .catch((err) => {
+          alert(String(err));
+        })
+        .finally(() => {
+          alert("finnaly");
+          ac.abort();
+        });
+    }
+  }, []);
 
-    navigator?.credentials
-      //@ts-ignore
-      .get({ otp: { transport: ["sms"] }, signal: ac.signal })
-      //@ts-ignore
-
-      .then((otp) => {
-        alert(JSON.stringify(otp));
-        setTheCode(JSON.stringify(otp));
-      })
-      .catch((err) => {
-        alert(err);
-      })
-      .finally(() => {
-        alert("finnaly");
-        ac.abort();
-      });
-    alert(ac.signal);
-  }
   const handleClickInputs = (index: number): void => {
     if (otpCode[index]) {
       codesRef.current[index]?.select();
