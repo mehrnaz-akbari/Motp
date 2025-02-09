@@ -97,6 +97,7 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
       })
       .finally(() => {
         alert("finnaly");
+        ac.abort();
       });
     alert(ac.signal);
   }
