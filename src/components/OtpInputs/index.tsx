@@ -78,7 +78,28 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
       alert(ac.signal);
     }
   }, []);
+  if ("OTPCredential" in window) {
+    alert("in OTPCredential");
+    alert(navigator);
+    const ac = new AbortController();
 
+    navigator?.credentials
+      //@ts-ignore
+      .get({ otp: { transport: ["sms"] }, signal: ac.signal })
+      //@ts-ignore
+
+      .then((otp) => {
+        alert(JSON.stringify(otp));
+        setTheCode(JSON.stringify(otp));
+      })
+      .catch((err) => {
+        alert(err);
+      })
+      .finally(() => {
+        alert("finnaly");
+      });
+    alert(ac.signal);
+  }
   const handleClickInputs = (index: number): void => {
     if (otpCode[index]) {
       codesRef.current[index]?.select();
