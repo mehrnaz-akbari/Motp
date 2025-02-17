@@ -19,7 +19,7 @@ const Start: FC = () => {
         title={t("registerBluCard")}
         detail={t("registerBluCardText")}
         textButton={t("start")}
-        link="/no-name/phone-number"
+        link="/phone-number"
       />
     </div>
   );

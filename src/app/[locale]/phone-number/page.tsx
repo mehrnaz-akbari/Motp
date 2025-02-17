@@ -27,7 +27,7 @@ const PhoneNumber: FC = () => {
   const handeSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (handleValueValidation()) {
-      router.push(`/no-name/otp?phone=${value}`);
+      router.push(`/otp?phone=${value}`);
     }
   };
 

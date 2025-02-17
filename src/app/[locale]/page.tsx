@@ -1,8 +1,14 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+// Hooks
+import { useRouter } from "next/navigation";
 
-const Home: FC = () => {
-  return <div></div>;
+const NoName: FC = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/start");
+  }, []);
+  return <></>;
 };
 
-export default Home;
+export default NoName;

@@ -49,7 +49,7 @@ const OtpPage: FC = () => {
         initialRequest = true;
       }
     } else {
-      router.replace("/no-name/phone-number");
+      router.replace("/phone-number");
     }
   }, [initialRequest, phone]);
 
@@ -64,7 +64,7 @@ const OtpPage: FC = () => {
     const currentOtp = otp.toString().replaceAll(",", "");
     postOtp(phone, currentOtp)
       .then(() => {
-        router.push(`/no-name/national-id?phone=${phone}`);
+        router.push(`/national-id?phone=${phone}`);
       })
       .catch((err) => {
         if (err.response.status === 401) {

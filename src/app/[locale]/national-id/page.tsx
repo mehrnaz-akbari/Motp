@@ -26,7 +26,7 @@ const NationalId: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const redirectToPhonenumberPage = (): void => {
-    router.replace("/no-name/phone-number");
+    router.replace("/phone-number");
   };
 
   const isPhoneInvalid = !phone || !isValidPhone(phone ?? "");
@@ -52,7 +52,7 @@ const NationalId: FC = () => {
       postNationalId(value, phone)
         .then((res) => {
           store("info", res);
-          router.push("/no-name/success");
+          router.push("/success");
         })
         .catch(({ response }) => {
           setErrorState(response?.data?.message);
