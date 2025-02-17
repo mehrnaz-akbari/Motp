@@ -22,6 +22,7 @@ const NationalId: FC = () => {
 
   const [value, setValue] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [res, setRes] = useState<string>("");
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -52,7 +53,8 @@ const NationalId: FC = () => {
       postNationalId(value, phone)
         .then((res) => {
           store("info", res);
-          router.push("/success");
+          setRes(JSON.stringify(res));
+          // router.push("/success");
         })
         .catch(({ response }) => {
           setErrorState(response?.data?.message);
@@ -109,6 +111,7 @@ const NationalId: FC = () => {
               value={value}
             />
           </FormItem>
+          res:{res}
         </Form>
       </div>
     </div>
