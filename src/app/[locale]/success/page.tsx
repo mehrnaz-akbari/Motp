@@ -18,7 +18,7 @@ const Success: FC = () => {
   return (
     <div className="main-container">
       <Header title={t("registerBluCard")} />
-      renderLink:{renderLink()}
+      the local data:{JSON.stringify(info)}
       <BannerWithButton
         title={info?.title ?? t("bluCardHasRegistered")}
         detail={info?.description ?? t("enterBluForActivate")}
