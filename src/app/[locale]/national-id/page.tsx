@@ -53,7 +53,7 @@ const NationalId: FC = () => {
       postNationalId(value, phone)
         .then((res) => {
           store("info", res);
-          setRes(JSON.stringify(res));
+          setRes(res.toString());
           // router.push("/success");
         })
         .catch(({ response }) => {
