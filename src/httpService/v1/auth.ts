@@ -5,7 +5,7 @@ import { NationalIdResponse, GetOtpResponse } from "@/types";
 
 export const requestOtp = async (mobile: string): Promise<GetOtpResponse> => {
   return await http({
-    url: "/otp/get-otp",
+    url: "/no-name-card/get-otp",
     data: {
       mobile,
       type: "GENERAL",
@@ -15,7 +15,7 @@ export const requestOtp = async (mobile: string): Promise<GetOtpResponse> => {
 };
 export const postOtp = async (mobileNumber: string, otp: string) => {
   return await http({
-    url: "/otp/verify-otp",
+    url: "/no-name-card/verify-otp",
     data: {
       otp,
       mobileNumber,
@@ -30,7 +30,7 @@ export const postNationalId = async (
   mobileNumber: string
 ): Promise<NationalIdResponse> => {
   return await http({
-    url: "/noname/card/check",
+    url: "/no-name-card/check/shahkar",
     data: {
       nationalCode,
       mobileNumber,
