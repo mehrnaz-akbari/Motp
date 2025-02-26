@@ -8,7 +8,7 @@ const NotFound: FC = () => {
   const t = useTranslations("noName");
   const router = useRouter();
   useEffect(() => {
-    router.replace("/no-name");
+    router.replace("/");
   }, []);
   return <></>;
 };

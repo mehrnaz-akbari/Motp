@@ -13,10 +13,10 @@ import { geistIranYekan } from "@/helpers/fonts";
 export const metadata: Metadata = {
   title: "کارت بلوبانک",
   description: "کارت بلوبانک",
-  other: {
-    viewport:
-      "width=device-width, initial-scale=1, interactive-widget=resizes-content",
-  },
+  // other: {
+  //   viewport:
+  //     "width=device-width, initial-scale=1, interactive-widget=resizes-content",
+  // },
 };
 
 export default function RootLayout({

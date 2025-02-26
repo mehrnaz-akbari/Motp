@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 // Helpers
 import { isValidPhone } from "@/helpers/inputChecker";
+import { formatToPhone, phoneNumberDeFormatter } from "@/helpers";
 
 const PhoneNumber: FC = () => {
   const t = useTranslations("noName");
@@ -17,8 +18,8 @@ const PhoneNumber: FC = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
   const handelChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.value.length < 12) {
-      setValue(e.target.value);
+    if (e.target.value.length < 16) {
+      setValue(formatToPhone(e.target.value.trim()));
       if (e.target.value) {
         removeErrorState();
       }
@@ -27,14 +28,14 @@ const PhoneNumber: FC = () => {
   const handeSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (handleValueValidation()) {
-      router.push(`/otp?phone=${value}`);
+      router.push(`/otp?phone=${phoneNumberDeFormatter(value)}`);
     }
   };
 
   const handleValueValidation = (): boolean => {
     let isValid = true;
-    if (value) {
-      const result = isValidPhone(value);
+    if (value.replaceAll("  ", "")) {
+      const result = isValidPhone(phoneNumberDeFormatter(value));
       if (result) {
         removeErrorState();
         isValid = true;
@@ -63,7 +64,7 @@ const PhoneNumber: FC = () => {
         <Form
           text={t("confirCodeWillBeSending")}
           onSubmit={handeSubmit}
-          disabled={isDisabled}
+          disabled={isDisabled || !value}
         >
           <FormItem title={t("enterPhoneNumber")}>
             <SingleInput

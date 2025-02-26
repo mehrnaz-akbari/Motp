@@ -8,6 +8,7 @@
     "call": "Call",
     "new": "new!",
     "notFoundPage": "this page does not exist",
-    "returnToHomePage": "return to homepage"
+    "returnToHomePage": "return to homepage",
+    "loading": "loading"
   }
 }

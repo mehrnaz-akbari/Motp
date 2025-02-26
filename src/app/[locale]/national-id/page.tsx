@@ -19,7 +19,6 @@ const NationalId: FC = () => {
   const router = useRouter();
   const params = useSearchParams();
   const phone = params.get("phone");
-
   const [value, setValue] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -45,6 +44,23 @@ const NationalId: FC = () => {
       }
     }
   };
+  const handleValueValidation = (): boolean => {
+    let isValid = true;
+    if (value) {
+      const result = isValidIranianNationalCode(value);
+      if (result) {
+        removeErrorState();
+        isValid = true;
+      } else {
+        isValid = false;
+        setErrorState(t("idIsInvalid"));
+      }
+    } else {
+      isValid = false;
+      setErrorState(t("idRequired"));
+    }
+    return isValid;
+  };
   const handeSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (handleValueValidation() && phone) {
@@ -68,23 +84,6 @@ const NationalId: FC = () => {
     }
   };
 
-  const handleValueValidation = (): boolean => {
-    let isValid = true;
-    if (value) {
-      const result = isValidIranianNationalCode(value);
-      if (result) {
-        removeErrorState();
-        isValid = true;
-      } else {
-        isValid = false;
-        setErrorState(t("idIsInvalid"));
-      }
-    } else {
-      isValid = false;
-      setErrorState(t("idRequired"));
-    }
-    return isValid;
-  };
   const removeErrorState = (): void => {
     setIsDisabled(false);
     setError("");
@@ -98,7 +97,11 @@ const NationalId: FC = () => {
     <div className="main-container">
       <Header title={t("registerBluCard")} hasBack />
       <div className="container">
-        <Form onSubmit={handeSubmit} disabled={isDisabled} loading={loading}>
+        <Form
+          onSubmit={handeSubmit}
+          disabled={isDisabled || !value}
+          loading={loading}
+        >
           <FormItem title={t("enterID")}>
             <SingleInput
               icon="ID"

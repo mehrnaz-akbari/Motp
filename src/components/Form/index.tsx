@@ -12,9 +12,11 @@ interface Props {
   disabled: boolean;
   children: ReactNode;
   loading?: boolean;
+  isOtp?: boolean;
   onSubmit: (e: ChangeEvent<HTMLFormElement>) => void;
 }
-const Form: FC<Props> = ({ text, children, onSubmit, disabled, loading }) => {
+const Form: FC<Props> = (props) => {
+  const { text, children, onSubmit, disabled, loading, isOtp } = props;
   const footerRef = useRef<HTMLFormElement>(null);
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [height, setHeight] = useState(0);
@@ -27,19 +29,22 @@ const Form: FC<Props> = ({ text, children, onSubmit, disabled, loading }) => {
   window?.visualViewport?.addEventListener("resize", (event: Event) => {
     const target = event.target as VisualViewport | null;
     if (target) {
-      setHeight(target?.height);
+      if (target?.height && !isKeyboardOpen) {
+        setHeight(target?.height);
+      }
     }
   });
-
+  const extraHeight = isOtp ? 80 : -16;
   return (
     <form
       className="flex w-full h-full flex-col justify-between"
       onSubmit={onSubmit}
       ref={footerRef}
-      style={{ height: isKeyboardOpen ? `${height - 48}px` : "100%" }}
+      style={{
+        paddingBottom: isKeyboardOpen ? `${height - extraHeight}px` : "0",
+      }}
     >
       <div>{children}</div>
-
       <div className="h-[96px] px-5 w-full flex justify-between  box-border items-center">
         <span className="text-sm text-secondary">{text ?? ""}</span>
         <button

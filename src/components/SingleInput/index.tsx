@@ -34,13 +34,14 @@ const SingleInput: FC<Props> = ({
           className="w-6 h-6 mr-3 ml-2"
         />
         <input
-          type="number"
+          type="text"
           placeholder={placeHolder}
           inputMode="numeric"
           name={name}
+          dir="ltr"
           value={value}
           onChange={onChange}
-          className="w-full h-full bg-transparent outline-none border-none"
+          className="w-full h-full bg-transparent  outline-none border-none text-right ltr:ml-3"
         />
       </div>
       {error && (

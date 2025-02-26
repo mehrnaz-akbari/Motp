@@ -1,5 +1,12 @@
 "use client";
-import { ChangeEvent, FC, useState, useRef, useEffect } from "react";
+import {
+  ChangeEvent,
+  FC,
+  useState,
+  useRef,
+  useEffect,
+  KeyboardEvent,
+} from "react";
 // Helpers
 import { onlyNumbers, preventSpecialCharacters } from "@/helpers";
 import useOtpAutoFillHook from "@/hooks/useOtpAutoFillHook";
@@ -8,11 +15,6 @@ interface Props {
   onChange: (value: string[]) => void;
   error?: string;
 }
-type CredentialRequestOptions = {
-  otp: OTPOptions;
-  signal: AbortSignal;
-};
-
 type OTPOptions = {
   transport: string[];
 };
@@ -29,6 +31,7 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
     event: ChangeEvent<HTMLInputElement>,
     index: number
   ): void {
+    console.log(event.target.value)
     if (onlyNumbers(event)) {
       const value = preventSpecialCharacters(event);
       const currentOtpCode = otpCode;
@@ -41,14 +44,13 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
           if (otpCode[index + 1]) {
             codesRef.current[index + 1]?.select();
           }
-        } else {
-          codesRef.current[index - 1]?.focus();
-          if (otpCode[index - 1]) {
-            codesRef.current[index - 1]?.select();
-          }
         }
       } else if (value.length === 6) {
         const otp = value.split("");
+        onChange(otp);
+        setOtpCode(otp);
+      }else if(value.length > 6){
+        const otp = value.substring(0,6).split("");
         onChange(otp);
         setOtpCode(otp);
       }
@@ -66,9 +68,18 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
       codesRef.current[index]?.select();
     }
   };
+  const handleKey = (event: KeyboardEvent, index: number) => {
+    if (event.key === "Backspace") {
+      const currentOtpCode = otpCode;
+      currentOtpCode[index] = "";
+      setOtpCode([...currentOtpCode]);
+      codesRef.current[index - 1]?.select();
+    }
+  };
   const handleRef = (el: HTMLInputElement, item: number) => {
     codesRef.current[item] = el;
   };
+
   const staticClassName =
     "h-12 w-[14%] border-2 border-solid rounded-[10px] bg-input-placeholder ";
   return (
@@ -81,9 +92,8 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
             key={item}
           >
             <input
-              type="number"
+              type="search"
               inputMode="numeric"
-              autoComplete="one-time-code"
               name="otp"
               className="w-full h-full bg-transparent outline-none border-none text-center font-extrabold"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -92,6 +102,7 @@ const OtpInputs: FC<Props> = ({ onChange, error }) => {
               ref={(el: HTMLInputElement) => handleRef(el, item)}
               value={otpCode[item]}
               onClick={() => handleClickInputs(item)}
+              onKeyDown={(e: KeyboardEvent) => handleKey(e, item)}
             />
           </div>
         ))}

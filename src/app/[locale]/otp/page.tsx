@@ -3,8 +3,8 @@ import { ChangeEvent, FC, useEffect, useState } from "react";
 // Ui Components
 import {
   Form,
-  Header,
   FormItem,
+  Header,
   OtpInputs,
   OtpTimeCounter,
 } from "@/components";
@@ -67,11 +67,7 @@ const OtpPage: FC = () => {
         router.push(`/national-id?phone=${phone}`);
       })
       .catch((err) => {
-        if (err.response.status === 401) {
-          setErrorState(t("expiredCode"));
-        } else if (err.response.status === 404) {
-          setErrorState(t("confirmCodeIsWronge"));
-        }
+        setErrorState(err?.response?.data?.message);
       })
       .finally(() => {
         setLoading(false);
@@ -124,8 +120,9 @@ const OtpPage: FC = () => {
             <OtpTimeCounter countTime={otpTime} requestOtp={handleOtpRequest} />
           }
           onSubmit={handeSubmit}
-          disabled={isDisabled}
+          disabled={isDisabled || otpCode.length === 0}
           loading={loading}
+          isOtp
         >
           <FormItem
             title={t("confirmCodeText", {

@@ -8,6 +8,7 @@
     "call": "تماس",
     "new": "جدید!",
     "notFoundPage": "صفحه مورد نظر یافت نشد.",
-    "returnToHomePage": "بازگشت به صفحه اصلی"
+    "returnToHomePage": "بازگشت به صفحه اصلی",
+    "loading": "در حال بارگذاری"
   }
 }
