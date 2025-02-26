@@ -46,7 +46,7 @@ const Form: FC<Props> = (props) => {
     >
       <div>{children}</div>
       <div className="h-[96px] px-5 w-full flex justify-between  box-border items-center">
-        <span className="text-sm text-secondary">{text ?? ""}</span>
+        <span className="text-base text-secondary font-bold">{text ?? ""}</span>
         <button
           type="submit"
           className={`h-21 w-21 rounded-[32px] flex justify-center items-center border-none ${disabled ? "bg-disabled" : "bg-primary"}`}
